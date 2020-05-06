@@ -7,6 +7,6 @@ RUN apk add --no-cache bind
 VOLUME /etc/bind
 
 COPY run.sh /
-RUN chmod 774 /config/run.sh
+RUN chmod 774 /run.sh
 
 ENTRYPOINT ["/run.sh"]
