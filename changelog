@@ -1,4 +1,8 @@
-Version 1.0
-* Initial version:
-   - DNS Server
-   - DHCP Server
+Version 1.0 (Initial version)
+* Added:
+  - DNS Server
+  - DHCP Server
+
+Version 1.1
+* Added:
+  - Radius Server
