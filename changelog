@@ -6,3 +6,5 @@ Version 1.0 (Initial version)
 Version 1.1
 * Added:
   - Radius Server
+* Changed:
+  - Creation of settings.conf during installation
