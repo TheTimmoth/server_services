@@ -1,0 +1,54 @@
+#Changes in this file are not persistent.
+#If you have to make changes, please edit settings.conf and run update.sh
+
+version: "3.7"
+
+services:
+
+  dns:
+    build:
+      context: ./container/dns
+    image: server_dns
+    volumes:
+      - ./volumes/dns:/etc/bind
+      - ./volumes/common/dhcp-key:/config/dhcp-key
+    ports:
+      - "%%DNS_LISTENING_ADDRESS%%:%%DNS_LISTENING_PORT%%:53/udp"
+      - "%%DNS_LISTENING_ADDRESS%%:%%DNS_LISTENING_PORT%%:53/tcp"
+    environment:
+      - ENABLED=%%DNS_ENABLED%%
+    restart: always
+    networks:
+      server:
+        ipv4_address: %%BRIDGE_NET%%.%%DNS_BRIDGE_HOST%%
+        aliases:
+          - dns
+
+  dhcp:
+    build:
+      context: ./container/dhcp
+    image: server_dhcp
+    volumes:
+      - ./volumes/dhcp:/etc/dhcp
+      - ./volumes/common/dhcp-key:/config/dhcp-key
+    ports:
+      - "%%DHCP_LISTENING_ADDRESS%%:%%DHCP_LISTENING_PORT%%:67/udp"
+    environment:
+      - ENABLED=%%DHCP_ENABLED%%
+    restart: always
+    networks:
+      server:
+        ipv4_address: %%BRIDGE_NET%%.%%DHCP_BRIDGE_HOST%%
+        aliases:
+          - dhcp
+
+networks:
+
+  server:
+    driver: bridge
+    driver_opts:
+      com.docker.network.bridge.name: br-server
+    ipam:
+      driver: default
+      config:
+        - subnet: %%BRIDGE_NET%%.0/24
