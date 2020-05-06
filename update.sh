@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Update script
-# Version 1.0.191219
+# Version 1.0
 
 main() {
 

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Installation script
-# Version 1.0.200506
+# Version 1.1
 
 printf "Server services bundle\n"
 printf "Version 1.0.200506\n"
@@ -42,8 +42,9 @@ printf "Updating ./docker-compose.yml...\n"
 updateDockerCompose
 
 printf "Creating subdirectories...\n"
-mkdir -p volumes/dhcp
 mkdir -p volumes/dns
+mkdir -p volumes/dhcp
+mkdir -p volumes/freeradius
 
 #DHCP-Relay notification
 if [ $DHCP_ENABLED -eq 1 ]

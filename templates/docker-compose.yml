@@ -42,6 +42,23 @@ services:
         aliases:
           - dhcp
 
+  freeradius:
+    build:
+      context: ./container/freeradius
+    image: server_freeradius
+    volumes:
+      - ./volumes/freeradius:/etc/raddb
+    ports:
+      - "%%FREERADIUS_LISTENING_ADDRESS%%:%%FREERADIUS_LISTENING_PORT%%:1812/udp"
+    environment:
+      - ENABLED=%%FREERADIUS_ENABLED%%
+    restart: always
+    networks:
+      server:
+        ipv4_address: %%BRIDGE_NET%%.%%FREERADIUS_BRIDGE_HOST%%
+        aliases:
+          - freeradius
+
 networks:
 
   server:
