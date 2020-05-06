@@ -1,5 +1,6 @@
 #Ignore everything in volumes folder...
 volumes
 
-#Ignoring docker-compose.yml created by install.sh
+#Ignoring files created by install.sh
 docker-compose.yml
+settings.conf

@@ -10,10 +10,13 @@ printf "\n"
 
 source .scripts/configure.sh
 
+printf "Loading configuration...\n"
+configure
+
 LEAVE=0
 while [ $LEAVE -eq 0 ]
 do
-  printf "The default settings are designed to work out of the box.\n"
+  # printf "The default settings are designed to work out of the box.\n"
   read -p "Would you like to change settings first? [y|n] " TEMP
   case $TEMP in
     [yY] | [yY][eE][sS])
@@ -36,8 +39,6 @@ do
   esac
 done
 
-printf "Loading configuration...\n"
-configure
 printf "Updating ./docker-compose.yml...\n"
 updateDockerCompose
 

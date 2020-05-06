@@ -5,31 +5,37 @@
 
 configure() {
   if [ ! -f settings.conf ]; then
-    printf "\n# General settings\n" > settings.conf
+    printf "No settings file detectes. Creating new one...\n"
+    printf "Gathering required information:\n"
+    read -p "Please enter the IP Address on which the servers should listen: " IP_ADDRESS
+    printf "#########################################################\n" > settings.conf
+    printf "# server_services configuration file\n" >> settings.conf
+    printf "#########################################################\n" >> settings.conf
+    printf "\n# General settings\n" >> settings.conf
     echo "DNS_ENABLED=1" >> settings.conf
     echo "DHCP_ENABLED=1" >> settings.conf
     echo "FREERADIUS_ENABLED=1" >> settings.conf
     printf "\n# Docker settings\n" >> settings.conf
     echo "BRIDGE_NET=\"10.201.0\"" >> settings.conf
     printf "\n# DNS settings\n" >> settings.conf
-    echo "DNS_LISTENING_ADDRESS=\"10.0.1.1\"" >> settings.conf
+    echo "DNS_LISTENING_ADDRESS=\"$IP_ADDRESS\"" >> settings.conf
     echo "DNS_LISTENING_PORT=53" >> settings.conf
     echo "DNS_BRIDGE_HOST=2" >> settings.conf
     printf "\n# DHCP settings\n" >> settings.conf
-    echo "DHCP_LISTENING_ADDRESS=\"10.0.1.1\"" >> settings.conf
-    echo "DHCP_LISTENING_PORT=8067" >> settings.conf
+    echo "DHCP_LISTENING_ADDRESS=\"$IP_ADDRESS\"" >> settings.conf
+    echo "DHCP_LISTENING_PORT=67" >> settings.conf
     echo "DHCP_BRIDGE_HOST=3" >> settings.conf
-    printf "\n# FREERADIUS settings\n"
-    echo "FREERADIUS_LISTENING_ADDRESS=\"10.0.1.1\""
-    echo "FREERADIUS_LISTENING_PORT=1812"
-    echo "FREERADIUS_BRIDGE_HOST=4"
+    printf "\n# FREERADIUS settings\n" >> settings.conf
+    echo "FREERADIUS_LISTENING_ADDRESS=\"$IP_ADDRESS\"" >> settings.conf
+    echo "FREERADIUS_LISTENING_PORT=1812" >> settings.conf
+    echo "FREERADIUS_BRIDGE_HOST=4" >> settings.conf
   fi
   source settings.conf
 }
 
 updateDockerCompose() {
   # printf "\tLoading configuration...\n"
-  # configure
+  configure
   # printf "\tUpdating file...\n"
   cp templates/docker-compose.yml ./docker-compose.yml
   sed -i "s/%%DNS_ENABLED%%/${DNS_ENABLED}/g" ./docker-compose.yml
