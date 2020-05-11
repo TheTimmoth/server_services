@@ -1,7 +1,7 @@
 #Changes in this file are not persistent.
 #If you have to make changes, please edit settings.conf and run update.sh
 
-version: "3.7"
+version: "2.4"
 
 services:
 
@@ -13,14 +13,17 @@ services:
       - ./volumes/dns:/etc/bind
       - ./volumes/common/dhcp-key:/config/dhcp-key
     ports:
-      - "%%DNS_LISTENING_ADDRESS%%:%%DNS_LISTENING_PORT%%:53/udp"
-      - "%%DNS_LISTENING_ADDRESS%%:%%DNS_LISTENING_PORT%%:53/tcp"
+      - "%%DNS_LISTENING_ADDRESS%%%%DNS_LISTENING_PORT%%:53/udp"
+      - "%%DNS_LISTENING_ADDRESS%%%%DNS_LISTENING_PORT%%:53/tcp"
+      - "127.0.0.1:953:953/udp"
+      - "127.0.0.1:953:953/tcp"
     environment:
       - ENABLED=%%DNS_ENABLED%%
     restart: always
     networks:
       server:
-        ipv4_address: %%BRIDGE_NET%%.%%DNS_BRIDGE_HOST%%
+        ipv4_address: %%NET_IPv4_SUBNET%%.%%DNS_BRIDGE_HOST%%
+        ipv6_address: %%NET_IPv6_SUBNET%%%%DNS_BRIDGE_HOST%%
         aliases:
           - dns
 
@@ -32,13 +35,14 @@ services:
       - ./volumes/dhcp:/etc/dhcp
       - ./volumes/common/dhcp-key:/config/dhcp-key
     ports:
-      - "%%DHCP_LISTENING_ADDRESS%%:%%DHCP_LISTENING_PORT%%:67/udp"
+      - "%%DHCP_LISTENING_ADDRESS%%%%DHCP_LISTENING_PORT%%:67/udp"
     environment:
       - ENABLED=%%DHCP_ENABLED%%
     restart: always
     networks:
       server:
-        ipv4_address: %%BRIDGE_NET%%.%%DHCP_BRIDGE_HOST%%
+        ipv4_address: %%NET_IPv4_SUBNET%%.%%DHCP_BRIDGE_HOST%%
+        ipv6_address: %%NET_IPv6_SUBNET%%%%DHCP_BRIDGE_HOST%%
         aliases:
           - dhcp
 
@@ -49,13 +53,14 @@ services:
     volumes:
       - ./volumes/freeradius:/etc/raddb
     ports:
-      - "%%FREERADIUS_LISTENING_ADDRESS%%:%%FREERADIUS_LISTENING_PORT%%:1812/udp"
+      - "%%FREERADIUS_LISTENING_ADDRESS%%%%FREERADIUS_LISTENING_PORT%%:1812/udp"
     environment:
       - ENABLED=%%FREERADIUS_ENABLED%%
     restart: always
     networks:
       server:
-        ipv4_address: %%BRIDGE_NET%%.%%FREERADIUS_BRIDGE_HOST%%
+        ipv4_address: %%NET_IPv4_SUBNET%%.%%FREERADIUS_BRIDGE_HOST%%
+        ipv6_address: %%NET_IPv6_SUBNET%%%%FREERADIUS_BRIDGE_HOST%%
         aliases:
           - freeradius
 
@@ -65,7 +70,11 @@ networks:
     driver: bridge
     driver_opts:
       com.docker.network.bridge.name: br-server
+    enable_ipv6: true
     ipam:
       driver: default
       config:
-        - subnet: %%BRIDGE_NET%%.0/24
+        - subnet: %%NET_IPv4_SUBNET%%.0/24
+          gateway: %%NET_IPv4_SUBNET%%.1
+        - subnet: %%NET_IPv6_SUBNET%%/%%NET_IPv6_SUFFIX%%
+          gateway: %%NET_IPv6_SUBNET%%1
