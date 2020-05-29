@@ -76,5 +76,5 @@ networks:
       config:
         - subnet: %%NET_IPv4_SUBNET%%.0/24
           gateway: %%NET_IPv4_SUBNET%%.1
-        - subnet: %%NET_IPv6_SUBNET%%/%%NET_IPv6_SUFFIX%%
+        - subnet: %%NET_IPv6_SUBNET%%/%%NET_IPv6_NETMASK%%
           gateway: %%NET_IPv6_SUBNET%%1

@@ -18,6 +18,7 @@ configure() {
     printf "\n# Docker settings\n" >> settings.conf
     echo "NET_IPv4_SUBNET=\"10.201.0\"" >> settings.conf
     echo "NET_IPv6_SUBNET=\"fd00::/80\"" >> settings.conf
+    echo "NET_IPv6_NETMASK=64" >> settings.conf
     printf "\n# DNS settings\n" >> settings.conf
     echo "DNS_LISTENING_ADDRESS=\"$IP_ADDRESS\"" >> settings.conf
     echo "DNS_LISTENING_PORT=53" >> settings.conf
@@ -43,8 +44,8 @@ updateDockerCompose() {
   sed -i "s/%%DHCP_ENABLED%%/${DHCP_ENABLED}/g" ./docker-compose.yml
   sed -i "s/%%FREERADIUS_ENABLED%%/${FREERADIUS_ENABLED}/g" ./docker-compose.yml
   sed -i "s/%%NET_IPv4_SUBNET%%/${NET_IPv4_SUBNET}/g" ./docker-compose.yml
-  sed -i "s/%%NET_IPv6_SUBNET%%/${NET_IPv6_SUBNET}/g" ./docker-compose.yml
-  sed -i "s/%%NET_IPv6_SUFFIX%%/${NET_IPv6_SUFFIX}/g" ./docker-compose.yml
+  sed -i "s#%%NET_IPv6_SUBNET%%#${NET_IPv6_SUBNET}#g" ./docker-compose.yml
+  sed -i "s/%%NET_IPv6_NETMASK%%/${NET_IPv6_NETMASK}/g" ./docker-compose.yml
   if [ !  -z  $DNS_LISTENING_ADDRESS ]; then
     echo "1a $DNS_LISTENING_ADDRESS"
     sed -i "s/%%DNS_LISTENING_ADDRESS%%/${DNS_LISTENING_ADDRESS}:/g" ./docker-compose.yml
