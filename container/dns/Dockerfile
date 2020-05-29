@@ -2,7 +2,7 @@ FROM alpine:3.8
 
 LABEL maintainer "Tim Schlottmann <tim@schlottmann.xyz>"
 
-RUN apk add --no-cache bind bind-dnssec-root bind-dnssec-tools
+RUN apk add --no-cache bind bind-dnssec-tools
 
 VOLUME /etc/bind
 
