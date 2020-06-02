@@ -6,6 +6,8 @@ version: "2.4"
 services:
 
   dns:
+    depends_on:
+      - ipv6-nat
     build:
       context: ./container/dns
     image: server_dns
@@ -28,6 +30,8 @@ services:
           - dns
 
   dhcp:
+    depends_on:
+      - ipv6-nat
     build:
       context: ./container/dhcp
     image: server_dhcp
@@ -47,6 +51,8 @@ services:
           - dhcp
 
   freeradius:
+    depends_on:
+      - ipv6-nat
     build:
       context: ./container/freeradius
     image: server_freeradius
@@ -63,6 +69,15 @@ services:
         ipv6_address: %%NET_IPv6_SUBNET%%%%FREERADIUS_BRIDGE_HOST%%
         aliases:
           - freeradius
+
+  ipv6-nat:
+    image: robbertkl/ipv6nat
+    restart: always
+    privileged: true
+    network_mode: "host"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /lib/modules:/lib/modules:ro
 
 networks:
 
