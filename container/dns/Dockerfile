@@ -1,11 +1,11 @@
-FROM alpine:3.8
+FROM alpine:3.12
 
 RUN apk add --no-cache tzdata
 
 LABEL maintainer "Tim Schlottmann <tim@schlottmann.xyz>"
-LABEL version="1.2"
+LABEL version="1.3"
 
-RUN apk add --no-cache bind
+RUN addgroup -S -g 202 named && adduser -S -D -H -G named -u 202 named && apk add --no-cache bind
 
 VOLUME /etc/bind
 

@@ -1,11 +1,11 @@
-FROM alpine:3.8
+FROM alpine:3.12
 
 RUN apk add --no-cache tzdata
 
 LABEL maintainer "Tim Schlottmann <tim@schlottmann.xyz>"
-LABEL version="1.1"
+LABEL version="1.2"
 
-RUN apk add --no-cache freeradius freeradius-eap
+RUN addgroup -S -g 201 radius && adduser -S -D -H -G radius -u 201 radius && apk add --no-cache freeradius freeradius-eap
 
 VOLUME /etc/raddb
 
