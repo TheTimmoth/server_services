@@ -10,22 +10,22 @@ services:
       - ipv6-nat
     build:
       context: ./container/dns
-    image: server_dns:1.1
+    image: server_dns:1.2
     volumes:
       - ./volumes/dns:/etc/bind
       - ./volumes/common/dhcp-key:/config/dhcp-key
     ports:
-      - "%%DNS_LISTENING_ADDRESS%%%%DNS_LISTENING_PORT%%:53/udp"
-      - "%%DNS_LISTENING_ADDRESS%%%%DNS_LISTENING_PORT%%:53/tcp"
+      - "${DNS_BINDING:-53}:53/udp"
+      - "${DNS_BINDING:-53}:53/tcp"
       - "127.0.0.1:953:953/udp"
       - "127.0.0.1:953:953/tcp"
     environment:
-      - ENABLED=%%DNS_ENABLED%%
+      - ENABLED=${DNS_ENABLED:-1}
     restart: always
     networks:
       server:
-        ipv4_address: %%NET_IPv4_SUBNET%%.%%DNS_BRIDGE_HOST%%
-        ipv6_address: %%NET_IPv6_SUBNET%%%%DNS_BRIDGE_HOST%%
+        ipv4_address: ${NET_IPv4_SUBNET:-10.201.0}.${DNS_BRIDGE_HOST:-2}
+        ipv6_address: ${NET_IPv6_PREFIX:-fd1a:2b17:1d42:cddd:}:${DNS_BRIDGE_HOST:-2}
         aliases:
           - dns
 
@@ -34,19 +34,19 @@ services:
       - ipv6-nat
     build:
       context: ./container/dhcp
-    image: server_dhcp:1.0
+    image: server_dhcp:1.1
     volumes:
       - ./volumes/dhcp:/etc/dhcp
       - ./volumes/common/dhcp-key:/config/dhcp-key
     ports:
-      - "%%DHCP_LISTENING_ADDRESS%%%%DHCP_LISTENING_PORT%%:67/udp"
+      - "${DHCP_BINDING:-67}:67/udp"
     environment:
-      - ENABLED=%%DHCP_ENABLED%%
+      - ENABLED=${DHCP_ENABLED:-1}
     restart: always
     networks:
       server:
-        ipv4_address: %%NET_IPv4_SUBNET%%.%%DHCP_BRIDGE_HOST%%
-        ipv6_address: %%NET_IPv6_SUBNET%%%%DHCP_BRIDGE_HOST%%
+        ipv4_address: ${NET_IPv4_SUBNET:-10.201.0}.${DHCP_BRIDGE_HOST:-3}
+        ipv6_address: ${NET_IPv6_PREFIX:-fd1a:2b17:1d42:cddd:}:${DHCP_BRIDGE_HOST:-3}
         aliases:
           - dhcp
 
@@ -55,18 +55,18 @@ services:
       - ipv6-nat
     build:
       context: ./container/freeradius
-    image: server_freeradius:1.0
+    image: server_freeradius:1.1
     volumes:
       - ./volumes/freeradius:/etc/raddb
     ports:
-      - "%%FREERADIUS_LISTENING_ADDRESS%%%%FREERADIUS_LISTENING_PORT%%:1812/udp"
+      - "${FREERADIUS_BINDING:-1812}:1812/udp"
     environment:
-      - ENABLED=%%FREERADIUS_ENABLED%%
+      - ENABLED=${FREERADIUS_ENABLED:-1}
     restart: always
     networks:
       server:
-        ipv4_address: %%NET_IPv4_SUBNET%%.%%FREERADIUS_BRIDGE_HOST%%
-        ipv6_address: %%NET_IPv6_SUBNET%%%%FREERADIUS_BRIDGE_HOST%%
+        ipv4_address: ${NET_IPv4_SUBNET:-10.201.0}.${FREERADIUS_BRIDGE_HOST:-4}
+        ipv6_address: ${NET_IPv6_PREFIX:-fd1a:2b17:1d42:cddd:}:${FREERADIUS_BRIDGE_HOST:-4}
         aliases:
           - freeradius
 
@@ -89,7 +89,7 @@ networks:
     ipam:
       driver: default
       config:
-        - subnet: %%NET_IPv4_SUBNET%%.0/24
-          gateway: %%NET_IPv4_SUBNET%%.1
-        - subnet: %%NET_IPv6_SUBNET%%/%%NET_IPv6_NETMASK%%
-          gateway: %%NET_IPv6_SUBNET%%1
+        - subnet: ${NET_IPv4_SUBNET:-10.201.0}.0/24
+          gateway: ${NET_IPv4_SUBNET:-10.201.0}.1
+        - subnet: ${NET_IPv6_PREFIX:-fd1a:2b17:1d42:cddd:}:/${NET_IPv6_NETMASK:-64}
+          gateway: ${NET_IPv6_PREFIX:-fd1a:2b17:1d42:cddd:}:1

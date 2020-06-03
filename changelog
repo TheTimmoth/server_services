@@ -12,3 +12,13 @@ Version 1.1
   - Creation of settings.conf during installation
 * Fixed:
   - Binding to all interfaces now possible (leave address empty)
+
+Version 1.2
+* Added:
+  - Version Tags for Images
+  - ipv6nat container
+  - IPv6_NETMASK settings
+  - timezones
+* Changed:
+  - Removed unnecessary packages from DNS Server
+  - arg of named from -g to -f

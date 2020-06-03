@@ -1,7 +1,6 @@
 #!/bin/bash
 
 # Update script
-# Version 1.0
 
 main() {
 
