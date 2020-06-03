@@ -1,11 +1,9 @@
-FROM alpine:3.8
-
-RUN apk add --no-cache tzdata
+FROM debian:buster
 
 LABEL maintainer "Tim Schlottmann <tim@schlottmann.xyz>"
-LABEL version="1.1"
+LABEL version="1.2"
 
-RUN apk add --no-cache dhcp
+RUN apt-get update && apt-get upgrade -y && apt-get install isc-dhcp-server -y && apt-get clean
 RUN touch /var/lib/dhcp/dhcpd.leases
 
 VOLUME /etc/dhcp

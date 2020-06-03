@@ -1,6 +1,7 @@
 #!/bin/sh
 
 if [ $ENABLED -eq 1 ]; then
+  #Set timezone
   if [ -f /etc/localtime ]; then
     rm /etc/localtime
   fi
