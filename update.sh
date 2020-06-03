@@ -2,31 +2,25 @@
 
 # Update script
 
+update() {
+  docker-compose down
+  git pull
+  docker-compose up --build --detach
+  read -n 1 -s -r -p "Update finished. Press any key to continue..."
+  echo ""
+}
+
 main() {
-
-  source .scripts/configure.sh
-
-  printf "With this script you can look for updates or process an updated configuration file.\n"
-  printf "What do you want to do?\n"
-  printf "0) Update Configuration\n"
-  # printf "1) Update server_services\n"
-  printf "2) Exit\n"
-
   LEAVE=0
   while [ $LEAVE -eq 0 ]
   do
-
-    read -p "[0|2]: " TEMP
-
+    read -p "Server services are going to be shutted down during update. Continue? [y|n] " TEMP
     case $TEMP in
-      0)
-        updateDockerCompose
+      [yY] | [yY][eE][sS])
+        update
         LEAVE=1
         ;;
-      # 1)
-      #   :
-      #   ;;
-      2)
+      [nN] | [nN][oO])
         LEAVE=1
         ;;
       *)
