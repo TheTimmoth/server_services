@@ -1,6 +1,7 @@
 FROM alpine:3.8
 
 LABEL maintainer "Tim Schlottmann <tim@schlottmann.xyz>"
+LABEL version="1.1"
 
 RUN apk add --no-cache bind bind-dnssec-tools
 

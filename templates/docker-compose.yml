@@ -10,7 +10,7 @@ services:
       - ipv6-nat
     build:
       context: ./container/dns
-    image: server_dns
+    image: server_dns:1.1
     volumes:
       - ./volumes/dns:/etc/bind
       - ./volumes/common/dhcp-key:/config/dhcp-key
@@ -34,7 +34,7 @@ services:
       - ipv6-nat
     build:
       context: ./container/dhcp
-    image: server_dhcp
+    image: server_dhcp:1.0
     volumes:
       - ./volumes/dhcp:/etc/dhcp
       - ./volumes/common/dhcp-key:/config/dhcp-key
@@ -55,7 +55,7 @@ services:
       - ipv6-nat
     build:
       context: ./container/freeradius
-    image: server_freeradius
+    image: server_freeradius:1.0
     volumes:
       - ./volumes/freeradius:/etc/raddb
     ports:
@@ -71,7 +71,7 @@ services:
           - freeradius
 
   ipv6-nat:
-    image: robbertkl/ipv6nat
+    image: robbertkl/ipv6nat:latest
     restart: always
     privileged: true
     network_mode: "host"
