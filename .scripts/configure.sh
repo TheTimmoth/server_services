@@ -3,6 +3,13 @@
 # Configuration loading and updating script
 
 configure() {
+
+  if [ -f /etc/timezone ]; then
+    TIMEZONE=$(cat /etc/timezone)
+  elif [ -f /etc/localtime ]; then
+    TIMEZONE=$(ls -l /etc/localtime | sed -n "s#^.*zoneinfo/\(.*$\)#\1#p")
+  fi
+
   if [ ! -f settings.conf ]; then
     printf "No settings file detectes. Creating new one...\n"
     printf "#########################################################\n" > settings.conf
@@ -12,6 +19,8 @@ configure() {
     echo "DNS_ENABLED=1" >> settings.conf
     echo "DHCP_ENABLED=1" >> settings.conf
     echo "FREERADIUS_ENABLED=1" >> settings.conf
+    echo "" >> settings.conf
+    echo "TIMEZONE=${TIMEZONE:-"UTC"}" >> settings.conf
     printf "\n# Docker settings\n" >> settings.conf
     echo "NET_IPv4_SUBNET=10.201.0" >> settings.conf
     echo "NET_IPv6_SUBNET=fd00::/80" >> settings.conf

@@ -22,3 +22,4 @@ Version 1.2
 * Changed:
   - Removed unnecessary packages from DNS Server
   - arg of named from -g to -f
+  - Configuration via .env file

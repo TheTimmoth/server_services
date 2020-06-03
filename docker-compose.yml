@@ -21,6 +21,7 @@ services:
       - "127.0.0.1:953:953/tcp"
     environment:
       - ENABLED=${DNS_ENABLED:-1}
+      - TIMEZONE=${TIMEZONE:-UTC}
     restart: always
     networks:
       server:
@@ -42,6 +43,7 @@ services:
       - "${DHCP_BINDING:-67}:67/udp"
     environment:
       - ENABLED=${DHCP_ENABLED:-1}
+      - TIMEZONE=${TIMEZONE:-UTC}
     restart: always
     networks:
       server:
@@ -62,6 +64,7 @@ services:
       - "${FREERADIUS_BINDING:-1812}:1812/udp"
     environment:
       - ENABLED=${FREERADIUS_ENABLED:-1}
+      - TIMEZONE=${TIMEZONE:-UTC}
     restart: always
     networks:
       server:
