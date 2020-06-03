@@ -3,9 +3,9 @@
 # Update script
 
 update() {
-  docker-compose down
+  docker-compose down --rmi all
   git pull
-  docker-compose up --build --detach
+  docker-compose up --detach
   read -n 1 -s -r -p "Update finished. Press any key to continue..."
   echo ""
 }
