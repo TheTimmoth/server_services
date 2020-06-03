@@ -13,7 +13,6 @@ services:
     image: server_dns:1.2
     volumes:
       - ./volumes/dns:/etc/bind
-      - ./volumes/common/dhcp-key:/config/dhcp-key
     ports:
       - "${DNS_BINDING:-53}:53/udp"
       - "${DNS_BINDING:-53}:53/tcp"
@@ -38,7 +37,6 @@ services:
     image: server_dhcp:1.1
     volumes:
       - ./volumes/dhcp:/etc/dhcp
-      - ./volumes/common/dhcp-key:/config/dhcp-key
     ports:
       - "${DHCP_BINDING:-67}:67/udp"
     environment:
