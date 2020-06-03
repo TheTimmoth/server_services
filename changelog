@@ -25,6 +25,12 @@ Version 1.2
   - Configuration via .env file
 
 Version 1.3
+* Added:
+  - Old images are removed during update
+* Changed:
+  - Update dns and freeradius to alpine:3.12
+  - Update dhcp to debian:buster
 * Fixed:
   - Removed unused settings
+  - Removed unnecessary volume
   - Unify the naming scheme
