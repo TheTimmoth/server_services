@@ -23,3 +23,8 @@ Version 1.2
   - Removed unnecessary packages from DNS Server
   - arg of named from -g to -f
   - Configuration via .env file
+
+Version 1.3
+* Fixed:
+  - Removed unused settings
+  - Unify the naming scheme

@@ -22,19 +22,16 @@ configure() {
     echo "" >> settings.conf
     echo "TIMEZONE=${TIMEZONE:-"UTC"}" >> settings.conf
     printf "\n# Docker settings\n" >> settings.conf
-    echo "NET_IPv4_SUBNET=10.201.0" >> settings.conf
+    echo "NET_IPv4_PREFIX=10.201.0" >> settings.conf
     echo "NET_IPv6_PREFIX=fd00::/80" >> settings.conf
     echo "NET_IPv6_NETMASK=64" >> settings.conf
     printf "\n# DNS settings\n" >> settings.conf
-    echo "DNS_LISTENING_ADDRESS=$IP_ADDRESS" >> settings.conf
     echo "DNS_BINDING=53" >> settings.conf
     echo "DNS_BRIDGE_HOST=2" >> settings.conf
     printf "\n# DHCP settings\n" >> settings.conf
-    echo "DHCP_LISTENING_ADDRESS=$IP_ADDRESS" >> settings.conf
     echo "DHCP_BINDING=67" >> settings.conf
     echo "DHCP_BRIDGE_HOST=3" >> settings.conf
     printf "\n# FREERADIUS settings\n" >> settings.conf
-    echo "FREERADIUS_LISTENING_ADDRESS=$IP_ADDRESS" >> settings.conf
     echo "FREERADIUS_BINDING=1812" >> settings.conf
     echo "FREERADIUS_BRIDGE_HOST=4" >> settings.conf
   fi
