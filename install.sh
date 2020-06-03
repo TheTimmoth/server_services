@@ -19,7 +19,7 @@ do
   read -p "Would you like to use default settings? [y|n] " TEMP
   case $TEMP in
     [yY] | [yY][eE][sS])
-      printf "You can edit settings in file \"settings.conf\" at any time.\n"
+      printf "You can edit settings in file \"${PWD}/settings.conf\" at any time.\n"
       read -n 1 -s -r -p "Press any key to continue..."
       printf "\n"
       LEAVE=1
@@ -44,7 +44,7 @@ mkdir -p volumes/freeradius
 if [ $DHCP_ENABLED -eq 1 ]
 then
   printf "Please note that you need a DHCP-Relay-Agent for the dhcp server to function correctly.\n"
-  printf "The relay should forward DHCP-Requests to ${DHCP_LISTENING_ADDRESS}:${DHCP_LISTENING_PORT}\n"
+  printf "The relay should forward DHCP-Requests to the servers interface at port ${DHCP_BINDING}.\n"
   read -n 1 -s -r -p "Press any key to continue..."
   printf "\n"
 fi
