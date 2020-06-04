@@ -1,9 +1,10 @@
 FROM debian:buster
+RUN apt-get update && apt-get upgrade -y && apt-get clean
 
 LABEL maintainer "Tim Schlottmann <tim@schlottmann.xyz>"
-LABEL version="1.2"
+LABEL version="1.3"
 
-RUN apt-get update && apt-get upgrade -y && apt-get install isc-dhcp-server -y && apt-get clean
+RUN apt-get install isc-dhcp-server -y && apt-get clean
 RUN touch /var/lib/dhcp/dhcpd.leases
 
 VOLUME /etc/dhcp

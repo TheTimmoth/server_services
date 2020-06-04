@@ -1,11 +1,10 @@
-FROM alpine:3.12
-
-RUN apk add --no-cache tzdata
+FROM debian:buster
+RUN apt-get update && apt-get upgrade -y && apt-get clean
 
 LABEL maintainer "Tim Schlottmann <tim@schlottmann.xyz>"
-LABEL version="1.3"
+LABEL version="1.4"
 
-RUN addgroup -S -g 202 named && adduser -S -D -H -G named -u 202 named && apk add --no-cache bind
+RUN groupadd -r -g 202 bind && useradd -M -g 202 -u 202 -r bind && apt-get install bind9 -y && apt-get clean
 
 VOLUME /etc/bind
 

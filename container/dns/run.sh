@@ -13,7 +13,7 @@ if [ $ENABLED -eq 1 ]; then
   find /etc/bind -type d -exec chmod 775 {} +
   find /etc/bind -type f -exec chmod 664 {} +
 
-  named -f -u named
+  named -f -u bind
 else
   sleep 365d
 fi
