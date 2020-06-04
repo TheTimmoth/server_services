@@ -26,7 +26,7 @@ Version 1.2
 
 Version 1.3
 * Added:
-  - Creation of initial config files for the respective services
+  - Creation of initial config files for the respective services during installation
   - Old images are removed during update
 * Changed:
   - Run scripts are now speparated from container build process
