@@ -2,7 +2,7 @@
 
 A github-compose image for various services often found on servers.  
   
-Version 1.3 
+Version 1.3  
 &copy; 2019 - 2020 Tim Schlottmann  
 
 ## Installation
