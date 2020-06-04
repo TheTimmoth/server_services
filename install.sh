@@ -75,6 +75,11 @@ main() {}
   mkdir -p volumes/dhcp
   mkdir -p volumes/freeradius
 
+  printf "Gathering config files...\n"
+  docker run --rm -v ${PWD}/scripts:/scripts -v ${PWD}/volumes/dns:/template -e "SERVICE=DNS" server_dns:1.4 install
+  docker run --rm -v ${PWD}/scripts:/scripts -v ${PWD}/volumes/dhcp:/template -e "SERVICE=DHCP" server_dhcp:1.3 install
+  docker run --rm -v ${PWD}/scripts:/scripts -v ${PWD}/volumes/freeradius:/template -e "SERVICE=FREERADIUS" server_freeradius:1.3 install
+
   #DHCP-Relay notification
   if [ $DHCP_ENABLED -eq 1 ]
   then

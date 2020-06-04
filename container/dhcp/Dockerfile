@@ -1,8 +1,9 @@
 FROM debian:buster
 RUN apt-get update && apt-get upgrade -y && apt-get clean
 
-RUN mkdir /scripts
+RUN mkdir /scripts && mkdir /template
 VOLUME /scripts
+VOLUME /template
 
 CMD [ "run" ]
 ENTRYPOINT ["/scripts/container.sh"]

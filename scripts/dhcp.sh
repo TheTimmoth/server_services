@@ -5,5 +5,5 @@ run() {
 }
 
 install() {
-  sleep 365d
+  cp -r /etc/dhcp/* /template
 }
