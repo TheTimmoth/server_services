@@ -13,12 +13,14 @@ services:
     image: server_dns:1.4
     volumes:
       - ./volumes/dns:/etc/bind
+      - ./scripts:/scripts
     ports:
       - "${DNS_BINDING:-53}:53/udp"
       - "${DNS_BINDING:-53}:53/tcp"
       - "127.0.0.1:953:953/udp"
       - "127.0.0.1:953:953/tcp"
     environment:
+      - SERVICE=DNS
       - ENABLED=${DNS_ENABLED:-1}
       - TIMEZONE=${TIMEZONE:-UTC}
     restart: always
@@ -37,9 +39,11 @@ services:
     image: server_dhcp:1.3
     volumes:
       - ./volumes/dhcp:/etc/dhcp
+      - ./scripts:/scripts
     ports:
       - "${DHCP_BINDING:-67}:67/udp"
     environment:
+      - SERVICE=DHCP
       - ENABLED=${DHCP_ENABLED:-1}
       - TIMEZONE=${TIMEZONE:-UTC}
     restart: always
@@ -58,9 +62,11 @@ services:
     image: server_freeradius:1.3
     volumes:
       - ./volumes/freeradius:/etc/freeradius/3.0
+      - ./scripts:/scripts
     ports:
       - "${FREERADIUS_BINDING:-1812}:1812/udp"
     environment:
+      - SERVICE=FREERADIUS
       - ENABLED=${FREERADIUS_ENABLED:-1}
       - TIMEZONE=${TIMEZONE:-UTC}
     restart: always
