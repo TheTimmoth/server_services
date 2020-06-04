@@ -11,6 +11,6 @@ run() {
 }
 
 install() {
-  cp -r /etc/dns/* /template
+  cp -r /etc/bind/* /template
   chown -R :202 /template
 }

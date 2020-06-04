@@ -38,7 +38,7 @@ configure() {
   source settings.conf
 }
 
-main() {}
+main() {
   printf "Server services bundle\n"
   printf "Version 1.2\n"
   printf "Author: Tim Schlottmann\n"
