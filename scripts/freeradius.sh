@@ -7,7 +7,7 @@ run() {
   find /etc/freeradius/3.0 -type d -exec chmod 775 {} +
   find /etc/freeradius/3.0 -type f -exec chmod 664 {} +
 
-  radiusd -f -l stdout
+  freeradius -f -l stdout
 }
 
 install() {
