@@ -25,25 +25,24 @@ git clone https://github.com/TheTimmoth/server_services.git
 ## Configuration
 
 The main config file is `./settings.conf`  
-Here you can activate or deactivate services you (do not) want to use with the options
+Here (un)wanted services can be activated or deactivated with the options
 ```
 DNS_ENABLE=1
 DHCP_ENABLE=1
 FREERADIUS_ENABLE=0
 ```
-They can switched on (`=1`) or off (`=0`).  
+They can be switched on (`=1`) or off (`=0`).  
   
-The configuration files are stored in `./volumes/`  
-During installation example configurations are created. You can configure the services as you like.
+The configuration files are stored in `./volumes/`. During installation example configurations are created. For detailed configuration please read the respective manuals of the services.
 
 ## Run the services
-Open in a terminal in the server_services folder.  
+Open in a terminal in the `server_services` folder.  
   
 Execution is started with
 ```
 docker-compose up -d
 ```
-If you want to inspect the logs run
+Logs can be inspected running
 ```
 docker-compose logs
 ```
