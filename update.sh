@@ -5,7 +5,7 @@
 update() {
   docker-compose down --rmi all
   git pull
-  docker-compose up --detach
+  docker-compose up --build --detach
   read -n 1 -s -r -p "Update finished. Press any key to continue..."
   echo ""
 }
