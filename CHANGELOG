@@ -33,6 +33,6 @@ Version 1.3 (Public release)
   - Update of containers to debian:buster
   - Rebuild of containers during update
 * Fixed:
-  - Removed unused settings
-  - Removed unnecessary volume
-  - Unify the naming scheme
+  - Remove unused settings
+  - Remove unnecessary volume
+  - Unify the naming scheme of the settings
