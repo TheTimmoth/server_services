@@ -24,12 +24,12 @@ Version 1.2
   - arg of named from -g to -f
   - Configuration via .env file
 
-Version 1.3
+Version 1.3 (Public release)
 * Added:
   - Creation of initial config files for the respective services during installation
   - Old images are removed during update
 * Changed:
-  - Run scripts are now speparated from container build process
+  - Run scripts are now separated from container build process
   - Update of containers to debian:buster
   - Rebuild of containers during update
 * Fixed:
