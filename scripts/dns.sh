@@ -6,6 +6,7 @@ run() {
   find /etc/bind -type d -exec chmod g+s {} +
   find /etc/bind -type d -exec chmod 775 {} +
   find /etc/bind -type f -exec chmod 664 {} +
+  find /etc/bind -type f -name "*.sh" -exec chmod 774 {} +
 
   named -f -u bind
 }
