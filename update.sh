@@ -14,8 +14,7 @@ update() {
 
   echo "Rebuild and start containers..."
   docker-compose up --build --detach
-  read -n 1 -s -r -p "Update finished. Press any key to continue..."
-  echo ""
+  echo "Update finished..."
 }
 
 main() {
