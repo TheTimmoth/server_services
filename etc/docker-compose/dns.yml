@@ -1,0 +1,25 @@
+  dns:
+    depends_on:
+      - ipv6-nat
+    build:
+      context: ./container/dns
+    image: server_dns:1.4
+    volumes:
+      - ./volumes/dns:/etc/bind
+      - ./scripts:/scripts
+    ports:
+      - "${DNS_BINDING:-53}:53/udp"
+      - "${DNS_BINDING:-53}:53/tcp"
+      - "127.0.0.1:953:953/udp"
+      - "127.0.0.1:953:953/tcp"
+    environment:
+      - SERVICE=DNS
+      - ENABLED=${DNS_ENABLED:-1}
+      - TIMEZONE=${TIMEZONE:-UTC}
+    restart: always
+    networks:
+      server:
+        ipv4_address: ${NET_IPv4_PREFIX:-10.201.0}.${DNS_BRIDGE_HOST:-2}
+        ipv6_address: ${NET_IPv6_PREFIX:-fd1a:2b17:1d42:cddd:}:${DNS_BRIDGE_HOST:-2}
+        aliases:
+          - dns

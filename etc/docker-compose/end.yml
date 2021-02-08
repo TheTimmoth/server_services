@@ -1,0 +1,14 @@
+networks:
+
+  server:
+    driver: bridge
+    driver_opts:
+      com.docker.network.bridge.name: br-server
+    enable_ipv6: true
+    ipam:
+      driver: default
+      config:
+        - subnet: ${NET_IPv4_PREFIX:-10.201.0}.0/24
+          gateway: ${NET_IPv4_PREFIX:-10.201.0}.1
+        - subnet: ${NET_IPv6_PREFIX:-fd1a:2b17:1d42:cddd:}:/${NET_IPv6_NETMASK:-64}
+          gateway: ${NET_IPv6_PREFIX:-fd1a:2b17:1d42:cddd:}:1

@@ -1,0 +1,22 @@
+  dhcp:
+    depends_on:
+      - ipv6-nat
+    build:
+      context: ./container/dhcp
+    image: server_dhcp:1.3
+    volumes:
+      - ./volumes/dhcp:/etc/dhcp
+      - ./scripts:/scripts
+    ports:
+      - "${DHCP_BINDING:-67}:67/udp"
+    environment:
+      - SERVICE=DHCP
+      - ENABLED=${DHCP_ENABLED:-1}
+      - TIMEZONE=${TIMEZONE:-UTC}
+    restart: always
+    networks:
+      server:
+        ipv4_address: ${NET_IPv4_PREFIX:-10.201.0}.${DHCP_BRIDGE_HOST:-3}
+        ipv6_address: ${NET_IPv6_PREFIX:-fd1a:2b17:1d42:cddd:}:${DHCP_BRIDGE_HOST:-3}
+        aliases:
+          - dhcp
