@@ -3,8 +3,16 @@
 # Update script
 
 update() {
+  echo "Stop and remove containers..."
   docker-compose down --rmi all
+
+  echo "Pulling newest version..."
   git pull
+
+  echo "Recreate \"docker-compose.yml\"..."
+  ./setup.sh no_edit
+
+  echo "Rebuild and start containers..."
   docker-compose up --build --detach
   read -n 1 -s -r -p "Update finished. Press any key to continue..."
   echo ""

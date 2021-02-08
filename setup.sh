@@ -3,13 +3,19 @@
 main() {
 
   #Edit settings
-  read -n 1 -s -r -p "Press any key to open ca.conf..."
-  editor settings.conf
+  if [[ $1 == "no_edit" ]]
+  then
+    echo -ne ""
+  else
+    read -n 1 -s -r -p "Press any key to open \"./docker_compose.yml\"..."
+    editor settings.conf
+  fi
 
   #Parse settings
   source settings.conf
 
   #Build docker-compose.yml file
+  echo "Build \"./docker_compose.yml\"..."
   cat etc/docker-compose/start.yml > docker-compose.yml
   echo "" >> docker-compose.yml
 
@@ -38,4 +44,4 @@ main() {
 
 }
 
-main
+main $1
