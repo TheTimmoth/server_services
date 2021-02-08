@@ -3,3 +3,4 @@ volumes
 
 #Ignoring files created by install.sh
 settings.conf
+docker-compose.yml
