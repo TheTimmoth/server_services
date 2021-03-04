@@ -16,11 +16,13 @@ configure() {
     printf "# server_services configuration file\n" >> settings.conf
     printf "#########################################################\n" >> settings.conf
     printf "\n# General settings\n" >> settings.conf
-    echo "DNS_ENABLED=1" >> settings.conf
-    echo "DHCP_ENABLED=1" >> settings.conf
-    echo "FREERADIUS_ENABLED=1" >> settings.conf
+    echo "DNS_ENABLED=0" >> settings.conf
+    echo "DHCP_ENABLED=0" >> settings.conf
+    echo "FREERADIUS_ENABLED=0" >> settings.conf
     echo "" >> settings.conf
     echo "TIMEZONE=${TIMEZONE:-"UTC"}" >> settings.conf
+    echo "" >> settings.conf
+    echo "BUILD_DISABLED_CONTAINERS=0" >> settings.conf
     printf "\n# Docker settings\n" >> settings.conf
     echo "NET_IPv4_PREFIX=10.201.0" >> settings.conf
     echo "NET_IPv6_PREFIX=fd1a:2b17:1d42:cddd:" >> settings.conf
