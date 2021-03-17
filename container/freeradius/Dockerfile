@@ -8,7 +8,7 @@ VOLUME /template
 CMD [ "run" ]
 ENTRYPOINT ["/scripts/container.sh"]
 
-LABEL maintainer "Tim Schlottmann <tim@schlottmann.xyz>"
+LABEL maintainer "Tim Schlottmann <coding@timsc.de>"
 LABEL version="1.3"
 
 RUN groupadd -r -g 201 freerad && useradd -M -g 201 -u 201 -r freerad && apt-get install freeradius -y && apt-get clean
