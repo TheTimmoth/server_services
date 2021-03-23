@@ -7,6 +7,8 @@ main() {
     source /scripts/dhcp.sh
   elif [[ "$SERVICE" == "FREERADIUS" ]]; then
     source /scripts/freeradius.sh
+  elif [[ "$SERVICE" == "EJABBERD" ]]; then
+    source /scripts/ejabberd.sh
   else
     source /scripts/sceleton.sh
   fi

@@ -2,14 +2,14 @@
 
 main() {
 
-  #Edit settings
-  if [[ $1 == "no_edit" ]]
-  then
-    echo -ne ""
-  else
-    read -n 1 -s -r -p "Press any key to open \"./docker_compose.yml\"..."
-    editor settings.conf
-  fi
+  # #Edit settings
+  # if [[ $1 == "no_edit" ]]
+  # then
+  #   echo -ne ""
+  # else
+  #   read -n 1 -s -r -p "Press any key to open \"./docker_compose.yml\"..."
+  #   editor settings.conf
+  # fi
 
   #Parse settings
   source settings.conf
@@ -34,6 +34,12 @@ main() {
   if [[ $FREERADIUS_ENABLED == "1" || $BUILD_DISABLED_CONTAINERS == "1" ]]
   then
     cat etc/docker-compose/freeradius.yml >> docker-compose.yml
+    echo "" >> docker-compose.yml
+  fi
+
+  if [[ $EJABBERD_ENABLED == "1" || $BUILD_DISABLED_CONTAINERS == "1" ]]
+  then
+    cat etc/docker-compose/ejabberd.yml >> docker-compose.yml
     echo "" >> docker-compose.yml
   fi
 
