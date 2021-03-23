@@ -1,0 +1,34 @@
+#########################################################
+# server_services configuration file
+#########################################################
+#VERSION
+SETTINGS_VERSION=1.0  #Do not change
+
+# General settings
+DNS_ENABLED=0
+DHCP_ENABLED=0
+FREERADIUS_ENABLED=0
+
+TIMEZONE=Europe/Berlin
+
+BUILD_DISABLED_CONTAINERS=0
+
+# Docker settings
+NET_IPv4_SUBNET=10.100.0
+NET_IPv6_PREFIX=fd1a:2b17:1d42:cddd:
+NET_IPv6_NETMASK=80
+
+# DNS settings
+DNS_LISTENING_ADDRESS=
+DNS_LISTENING_PORT=53
+DNS_BRIDGE_HOST=2
+
+# DHCP settings
+DHCP_LISTENING_ADDRESS=
+DHCP_LISTENING_PORT=67
+DHCP_BRIDGE_HOST=3
+
+# FREERADIUS settings
+FREERADIUS_LISTENING_ADDRESS=
+FREERADIUS_LISTENING_PORT=1812
+FREERADIUS_BRIDGE_HOST=4
