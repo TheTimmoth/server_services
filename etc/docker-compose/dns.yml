@@ -8,8 +8,8 @@
       - ./volumes/dns:/etc/bind
       - ./scripts:/scripts
     ports:
-      - "${DNS_BINDING:-53}:53/udp"
-      - "${DNS_BINDING:-53}:53/tcp"
+      - "53:53/udp"
+      - "53:53/tcp"
       - "127.0.0.1:953:953/udp"
       - "127.0.0.1:953:953/tcp"
     environment:

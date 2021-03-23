@@ -8,7 +8,7 @@
       - ./volumes/freeradius:/etc/freeradius/3.0
       - ./scripts:/scripts
     ports:
-      - "${FREERADIUS_BINDING:-1812}:1812/udp"
+      - "1812:1812/udp"
     environment:
       - SERVICE=FREERADIUS
       - ENABLED=${FREERADIUS_ENABLED:-1}
