@@ -3,7 +3,7 @@
       - ipv6-nat
     build:
       context: ./container/ejabberd
-    image: ejabberd:1.0
+    image: server_ejabberd:1.0
     volumes:
       - ./volumes/ejabberd:/etc/ejabberd
       - ./scripts:/scripts
@@ -14,7 +14,7 @@
       - "5280:5280/tcp"
     environment:
       - SERVICE=EJABBERD
-      - ENABLED=${EJABBERD_ENABLED:-1}
+      - ENABLED=${EJABBERD_ENABLED:-0}
       - TIMEZONE=${TIMEZONE:-UTC}
     restart: always
     networks:

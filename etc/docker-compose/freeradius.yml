@@ -11,7 +11,7 @@
       - "1812:1812/udp"
     environment:
       - SERVICE=FREERADIUS
-      - ENABLED=${FREERADIUS_ENABLED:-1}
+      - ENABLED=${FREERADIUS_ENABLED:-0}
       - TIMEZONE=${TIMEZONE:-UTC}
     restart: always
     networks:

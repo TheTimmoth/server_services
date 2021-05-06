@@ -11,7 +11,7 @@
       - "67:67/udp"
     environment:
       - SERVICE=DHCP
-      - ENABLED=${DHCP_ENABLED:-1}
+      - ENABLED=${DHCP_ENABLED:-0}
       - TIMEZONE=${TIMEZONE:-UTC}
     restart: always
     networks:

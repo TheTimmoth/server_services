@@ -14,7 +14,7 @@
       - "127.0.0.1:953:953/tcp"
     environment:
       - SERVICE=DNS
-      - ENABLED=${DNS_ENABLED:-1}
+      - ENABLED=${DNS_ENABLED:-0}
       - TIMEZONE=${TIMEZONE:-UTC}
     restart: always
     networks:
