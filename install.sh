@@ -60,7 +60,6 @@ main() {
   docker run --rm -v ${PWD}/scripts:/scripts -v ${PWD}/volumes/dns:/template -e "SERVICE=DNS" server_dns:1.6 install
   docker run --rm -v ${PWD}/scripts:/scripts -v ${PWD}/volumes/dhcp:/template -e "SERVICE=DHCP" server_dhcp:1.4 install
   docker run --rm -v ${PWD}/scripts:/scripts -v ${PWD}/volumes/freeradius:/template -e "SERVICE=FREERADIUS" server_freeradius:1.4 install
-  docker run --rm -v ${PWD}/scripts:/scripts -v ${PWD}/volumes/ejabberd:/template -e "SERVICE=EJABBERD" server_ejabberd:1.1 install
 
   #DHCP-Relay notification
   if [ $DHCP_ENABLED -eq 1 ]

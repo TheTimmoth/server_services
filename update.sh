@@ -50,10 +50,6 @@ update_settings() {
   then
     echo "FREERADIUS_ENABLED=0" >> ./settings.conf
   fi
-  if [ -z $EJABBERD_ENABLED ]
-  then
-    echo "EJABBERD_ENABLED=0" >> ./settings.conf
-  fi
 
   if [ -z $TIMEZONE ]
   then
@@ -119,28 +115,6 @@ update_settings() {
   if [ -z $FREERADIUS_BRIDGE_HOST ]
   then
     echo "FREERADIUS_BRIDGE_HOST=4" >> ./settings.conf
-  fi
-
-  # EJABBERD settings
-  if [ -z $EJABBERD_LISTENING_ADDRESS ]
-  then
-    echo "EJABBERD_LISTENING_ADDRESS=" >> ./settings.conf
-  fi
-  if [ -z $EJABBERD_LISTENING_PORT_1 ]
-  then
-    echo "EJABBERD_LISTENING_PORT_1=5222" >> ./settings.conf
-  fi
-  if [ -z $EJABBERD_LISTENING_PORT_2 ]
-  then
-    echo "EJABBERD_LISTENING_PORT_2=5223" >> ./settings.conf
-  fi
-  if [ -z $EJABBERD_LISTENING_PORT_3 ]
-  then
-    echo "EJABBERD_LISTENING_PORT_3=5269" >> ./settings.conf
-  fi
-  if [ -z $EJABBERD_BRIDGE_HOST ]
-  then
-    echo "EJABBERD_BRIDGE_HOST=5" >> ./settings.conf
   fi
 
   # IPv6 NAT settings

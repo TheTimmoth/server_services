@@ -31,12 +31,6 @@ build_docker_compose(){
     echo "" >> docker-compose.yml
   fi
 
-  if [[ $EJABBERD_ENABLED == "1" || $BUILD_DISABLED_CONTAINERS == "1" ]]
-  then
-    cat $SOURCE_PATH/ejabberd.yml >> docker-compose.yml
-    echo "" >> docker-compose.yml
-  fi
-
   if [[ $USE_IPV6_NAT_CONTAINER == "1" ]]
   then
     cat $SOURCE_PATH/ipv6-nat.yml >> docker-compose.yml
