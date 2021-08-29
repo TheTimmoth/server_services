@@ -3,7 +3,7 @@
       - ipv6-nat
     build:
       context: ./container/freeradius
-    image: server_freeradius:1.3
+    image: server_freeradius:1.4
     volumes:
       - ./volumes/freeradius:/etc/freeradius/3.0
       - ./scripts:/scripts

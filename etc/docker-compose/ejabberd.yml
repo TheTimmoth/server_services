@@ -3,7 +3,7 @@
       - ipv6-nat
     build:
       context: ./container/ejabberd
-    image: server_ejabberd:1.0
+    image: server_ejabberd:1.1
     volumes:
       - ./volumes/ejabberd:/etc/ejabberd
       - ./scripts:/scripts

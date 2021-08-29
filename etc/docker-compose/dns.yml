@@ -3,7 +3,7 @@
       - ipv6-nat
     build:
       context: ./container/dns
-    image: server_dns:1.5
+    image: server_dns:1.6
     volumes:
       - ./volumes/dns:/etc/bind
       - ./scripts:/scripts

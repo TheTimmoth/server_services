@@ -3,7 +3,7 @@
       - ipv6-nat
     build:
       context: ./container/dhcp
-    image: server_dhcp:1.3
+    image: server_dhcp:1.4
     volumes:
       - ./volumes/dhcp:/etc/dhcp
       - ./scripts:/scripts
