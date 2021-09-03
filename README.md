@@ -2,8 +2,8 @@
 
 A github-compose image for various services often found on servers.  
   
-Version 1.3  
-&copy; 2019 - 2020 Tim Schlottmann  
+Version 2.0  
+&copy; 2019 - 2021 Tim Schlottmann  
 
 ## Installation
 
@@ -27,9 +27,9 @@ git clone https://github.com/TheTimmoth/server_services.git
 The main config file is `./settings.conf`  
 Here (un)wanted services can be activated or deactivated with the options
 ```
-DNS_ENABLE=1
-DHCP_ENABLE=1
-FREERADIUS_ENABLE=0
+DNS_ENABLE
+DHCP_ENABLE
+FREERADIUS_ENABLE
 ```
 They can be switched on (`=1`) or off (`=0`).  
   

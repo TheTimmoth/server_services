@@ -33,7 +33,7 @@ update_settings() {
   #   SETTINGS_VERSION_INT=1
   #   echo "  Detected settings file with version 1.0"
   #   echo "  Updating to version $SETTINGS_VERSION_LATEST"
-    sed "s~SETTINGS_VERSION=1.0~SETTINGS_VERSION=$SETTINGS_VERSION_LATEST~" ./settings.conf
+  #   sed "s~SETTINGS_VERSION=1.0~SETTINGS_VERSION=$SETTINGS_VERSION_LATEST~" ./settings.conf
   fi
 
   #Detecting missing settings and add them if necessary
@@ -59,68 +59,6 @@ update_settings() {
   if [ -z $BUILD_DISABLED_CONTAINERS ]
   then
     echo "BUILD_DISABLED_CONTAINERS=0" >> ./settings.conf
-  fi
-
-  # Docker settings
-  if [ -z $NET_IPv4_SUBNET ]
-  then
-    echo "NET_IPv4_SUBNET=10.100.0" >> ./settings.conf
-  fi
-  if [ -z $NET_IPv6_PREFIX ]
-  then
-    echo "NET_IPv6_PREFIX=fd1a:2b17:1d42:cddd:" >> ./settings.conf
-  fi
-  if [ -z $NET_IPv6_NETMASK ]
-  then
-    echo "6NET_IPv6_NETMASK=80" >> ./settings.conf
-  fi
-
-  # DNS settings
-  if [ -z $DNS_LISTENING_ADDRESS ]
-  then
-    echo "DNS_LISTENING_ADDRESS=" >> ./settings.conf
-  fi
-  if [ -z $DNS_LISTENING_PORT ]
-  then
-    echo "DNS_LISTENING_PORT=53" >> ./settings.conf
-  fi
-  if [ -z $DNS_BRIDGE_HOST ]
-  then
-    echo "DNS_BRIDGE_HOST=2" >> ./settings.conf
-  fi
-
-  # DHCP settings
-  if [ -z $DHCP_LISTENING_ADDRESS ]
-  then
-    echo "DHCP_LISTENING_ADDRESS=" >> ./settings.conf
-  fi
-  if [ -z $DHCP_LISTENING_PORT ]
-  then
-    echo "DHCP_LISTENING_PORT=67" >> ./settings.conf
-  fi
-  if [ -z $DHCP_BRIDGE_HOST ]
-  then
-    echo "DHCP_BRIDGE_HOST=3" >> ./settings.conf
-  fi
-
-  # FREERADIUS settings
-  if [ -z $FREERADIUS_LISTENING_ADDRESS ]
-  then
-    echo "FREERADIUS_LISTENING_ADDRESS=" >> ./settings.conf
-  fi
-  if [ -z $FREERADIUS_LISTENING_PORT ]
-  then
-    echo "FREERADIUS_LISTENING_PORT=1812" >> ./settings.conf
-  fi
-  if [ -z $FREERADIUS_BRIDGE_HOST ]
-  then
-    echo "FREERADIUS_BRIDGE_HOST=4" >> ./settings.conf
-  fi
-
-  # IPv6 NAT settings
-  if [ -z $USE_IPV6_NAT_CONTAINER ]
-  then
-    echo "USE_IPV6_NAT_CONTAINER=1" >> ./settings.conf
   fi
 }
 

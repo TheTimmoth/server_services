@@ -1,22 +1,13 @@
   freeradius:
-    depends_on:
-      - ipv6-nat
     build:
       context: ./container/freeradius
     image: server_freeradius:1.4
     volumes:
       - ./volumes/freeradius:/etc/freeradius/3.0
       - ./scripts:/scripts
-    ports:
-      - "1812:1812/udp"
     environment:
       - SERVICE=FREERADIUS
       - ENABLED=${FREERADIUS_ENABLED:-0}
       - TIMEZONE=${TIMEZONE:-UTC}
     restart: always
-    networks:
-      server:
-        ipv4_address: ${NET_IPv4_PREFIX:-10.201.0}.${FREERADIUS_BRIDGE_HOST:-4}
-        ipv6_address: ${NET_IPv6_PREFIX:-fd1a:2b17:1d42:cddd:}:${FREERADIUS_BRIDGE_HOST:-4}
-        aliases:
-          - freeradius
+    network_mode: host
